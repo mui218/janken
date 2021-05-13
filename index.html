@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Document</title>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1 class="title"><img src="image/title.png" alt=""></h1>
+      <p class="sub_title">栄光のタッチダウン</p>
+    </header>
+    <main>
+      <div class="name">
+        <p class="you">泥門デビルバッツ</p>
+        <p class="rival">神龍時ナーガ</p>
+      </div>
+      <div class="window">
+        <div class="window_1">
+          <p id="nd_sena" style="display: none;"></p>
+          <img id="sena_window" class="window_image_1" src="image/saisho_sena.png" alt="">
+        </div>
+        <p class="window_text">VS</p>
+        <div class="window_2">
+          <p id="nd_agon" style="display: none;"></p>
+          <img id="agon_window" class="window_image_2" src="image/saisho_agon.png" alt="">
+        </div>
+      </div>
+      <div class="result_area">
+        <div id="result_box" class="result_box">
+          <p id="result" class="result_text">RESULT</p>
+        </div>
+      </div>
+      <div class="screen">
+        <div class="circle_line_1">
+          <img id="icon_agon" class="yuusha_1" src="image/agon.png" alt="">
+          <p class="circle"></p>
+          <p class="circle"></p>
+          <p class="circle"></p>
+          <p class="circle"></p>
+          <p class="circle"></p>
+          <p class="circle"></p>
+          <p class="circle"></p>
+          <p class="circle"></p>
+          <p class="circle"></p>
+          <p class="circle"></p>
+          <p class="circle"></p>
+          <p class="circle"></p>
+          <p class="circle"></p>
+          <p class="circle"></p>
+          <p class="circle goal"></p>
+        </div>
+        <div class="circle_line_2">
+          <img id="icon_sena" class="yuusha_2" src="image/sena.png" alt="">
+          <p class="circle"></p>
+          <p class="circle"></p>
+          <p class="circle"></p>
+          <p class="circle"></p>
+          <p class="circle"></p>
+          <p class="circle"></p>
+          <p class="circle"></p>
+          <p class="circle"></p>
+          <p class="circle"></p>
+          <p class="circle"></p>
+          <p class="circle"></p>
+          <p class="circle"></p>
+          <p class="circle"></p>
+          <p class="circle"></p>
+          <p class="circle goal"></p>
+        </div>
+        <div class="text_wrapper">
+          <div class="text_box_1">
+            <p id="text">次の行動を選択してください</p>
+          </div>
+          <div class="text_box_2">
+            <ul>
+              <li id="play_li" class="btn-flat-border">セット</li>
+              <!-- <li id="support_li"><a href="support" class="btn-flat-border">チームメイト</a></li> -->
+              <li id="run_li" class="btn-flat-border" style="display: none;">ラン</li>
+              <li id="tackle_li" class="btn-flat-border" style="display: none;">タックル</li>
+              <li id="pass_li" class="btn-flat-border" style="display: none;">パス</li>
+              <li id="next_li" class="btn-flat-border" style="display: none;">次のセットへ</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- モーダルエリアここから -->
+    <section id="modalArea" class="modalArea">
+      <div id="modalBg" class="modalBg"></div>
+      <div class="modalWrapper">
+        <div class="modalContents">
+          <img src="image/win_sena.png" alt="">
+          <h1>タッチダウン!!</h1>
+          <h1>泥門デビルバッツの勝ちです。</h1>
+          <p></p>
+        </div>
+        <div id="closeModal" class="closeModal">
+          ×
+        </div>
+      </div>
+    </section>
+    <!-- モーダルエリアここまで -->
+
+    <!-- モーダルエリアここから -->
+    <section id="modalArea2" class="modalArea">
+      <div id="modalBg2" class="modalBg"></div>
+      <div class="modalWrapper">
+        <div class="modalContents">
+          <img src="image/win_agon.png" alt="">
+          <h1>タッチダウンされました</h1>
+          <h1>神龍寺ナーガの勝ちです。</h1>
+          <p></p>
+        </div>
+        <div id="closeModal2" class="closeModal">
+          ×
+        </div>
+      </div>
+    </section>
+    <!-- モーダルエリアここまで -->
+
+  </div>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    //ここに処理を追加
+
+    let sena_gain = 0;
+    let agon_gain = 0;
+
+
+    $("#play_li").on("click", function () {
+      $('#play_li').hide();
+      $('#support_li').hide();
+      $('#run_li').show();
+      $('#tackle_li').show();
+      $('#pass_li').show();
+    });
+
+    $("#run_li").on("click", function () {
+      const randomNumber = Math.floor(Math.random() * 3);
+      $('#run_li').hide();
+      $('#tackle_li').hide();
+      $('#pass_li').hide();
+      $('#next_li').show();
+      if (randomNumber == 0) {
+        $("#result").text("DRAW");
+        $('.result_box').addClass('draw');
+        $("#text").text("おっと両者一歩も引かない！");
+        $('#sena_window[src="image/saisho_sena.png"]').attr('src', 'image/run.png');
+        $('#agon_window[src="image/saisho_agon.png"]').attr('src', 'image/run_agon.png');
+      } else if (randomNumber == 1) {
+        $("#result").text("WIN");
+        $('.result_text').addClass('white');
+        $('.result_box').addClass('win');
+        $('#nd_agon').show();
+        $('.window_image_2').addClass('nd2');
+        $("#text").text('小早川セナ先週光速のランニングだ！泥門デビルバッツ3ヤードゲイン');
+        $('#sena_window[src="image/saisho_sena.png"]').attr('src', 'image/run.png');
+        sena_gain = sena_gain + 180;
+        $("#icon_sena").animate({ "left": sena_gain });
+        $('#agon_window[src="image/saisho_agon.png"]').attr('src', 'image/tackle_agon.png');
+      } else if (randomNumber == 2) {
+        $("#result").text("ROSE");
+        $('.result_text').addClass('white');
+        $('.result_box').addClass('rose');
+        $('#nd_sena').show();
+        $('.window_image_1').addClass('nd1');
+        $("#text").text("ここで一休選手へのロングパス！神龍寺ナーガ6ヤードゲイン!");
+        $('#sena_window[src="image/saisho_sena.png"]').attr('src', 'image/run.png');
+        $('#agon_window[src="image/saisho_agon.png"]').attr('src', 'image/pass_agon.png');
+        if (agon_gain >= 720) {
+          agon_gain = 900;
+        } else {
+          agon_gain = agon_gain + 360;
+        }
+        $("#icon_agon").animate({ "left": agon_gain });
+      } else {
+        ;
+      }
+      console.log(sena_gain);
+      console.log(agon_gain);
+      if (sena_gain >= 900) {
+        setTimeout(function () {
+          $('#modalArea').fadeIn();
+          $('#nd_sena').hide();
+          $('#nd_agon').hide();
+        }, 1000);
+      };
+      if (agon_gain >= 900) {
+        setTimeout(function () {
+          $('#modalArea2').fadeIn();
+          $('#nd_sena').hide();
+          $('#nd_agon').hide();
+        }, 1000);
+      };
+      // setTimeout(function () {
+      //   $('#sena_window').attr('src', 'image/saisho_sena.png');
+      //   $('#agon_window').attr('src', 'image/saisho_agon.png');
+      //   $("#result").text("RESULT");
+      //   $('#play_li').show();
+      //   $('#support_li').show();
+      //   $('#next_li').hide();
+      // }, 7000);
+    });
+
+
+
+
+
+    $("#tackle_li").on("click", function () {
+      const randomNumber = Math.floor(Math.random() * 3);
+      console.log(sena_gain);
+      $('#run_li').hide();
+      $('#tackle_li').hide();
+      $('#pass_li').hide();
+      $('#next_li').show();
+      if (randomNumber == 0) {
+        $("#result").text("ROSE");
+        $('.result_text').addClass('white');
+        $('.result_box').addClass('rose');
+        $('#nd_sena').show();
+        $('.window_image_1').addClass('nd1');
+        $("#text").text("阿含選手を誰も止められない！神龍寺ナーガ3ヤードゲイン");
+        $('#sena_window[src="image/saisho_sena.png"]').attr('src', 'image/tackle_sena.png');
+        $('#agon_window[src="image/saisho_agon.png"]').attr('src', 'image/run_agon.png');
+        agon_gain = agon_gain + 180;
+        $("#icon_agon").animate({ "left": agon_gain });
+      } else if (randomNumber == 1) {
+        $("#result").text("DRAW");
+        $('.result_box').addClass('draw');
+        $("#text").text("おっと両者一歩も引かない！");
+        $('#sena_window[src="image/saisho_sena.png"]').attr('src', 'image/tackle_sena.png');
+        $('#agon_window[src="image/saisho_agon.png"]').attr('src', 'image/tackle_agon.png');
+      } else if (randomNumber == 2) {
+        $("#result").text("WIN");
+        $('.result_text').addClass('white');
+        $('.result_box').addClass('win');
+        $('#nd_agon').show();
+        $('.window_image_2').addClass('nd2');
+        $("#text").text("ここでセナ選手の光速タックル！神龍寺3ヤード後退");
+        $('#sena_window[src="image/saisho_sena.png"]').attr('src', 'image/tackle_sena.png');
+        $('#agon_window[src="image/saisho_agon.png"]').attr('src', 'image/pass_agon.png');
+        if (agon_gain == 0) {
+          agon_gain = 0;
+        } else {
+          agon_gain = agon_gain - 180;
+        }
+        $("#icon_agon").animate({ "left": agon_gain });
+      } else {
+        ;
+      }
+      console.log(sena_gain);
+      console.log(agon_gain);
+      if (sena_gain >= 900 || agon_gain >= 900) {
+        setTimeout(function () {
+          $('#modalArea').fadeIn();
+          $('#nd_sena').hide();
+          $('#nd_agon').hide();
+        }, 1000);
+      };
+      if (agon_gain >= 900) {
+        setTimeout(function () {
+          $('#modalArea2').fadeIn();
+          $('#nd_sena').hide();
+          $('#nd_agon').hide();
+        }, 1000);
+      };
+      // setTimeout(function () {
+      //   $('#sena_window').attr('src', 'image/saisho_sena.png');
+      //   $('#agon_window').attr('src', 'image/saisho_agon.png');
+      //   $("#result").text("RESULT");
+      //   $('#play_li').show();
+      //   $('#support_li').show();
+      //   $('#next_li').hide();
+      // }, 7000);
+    });
+
+    $("#pass_li").on("click", function () {
+      const randomNumber = Math.floor(Math.random() * 3);
+      console.log(sena_gain);
+      $('#run_li').hide();
+      $('#tackle_li').hide();
+      $('#pass_li').hide();
+      $('#next_li').show();
+      if (randomNumber == 0) {
+        $("#result").text("WIN");
+        $('.result_text').addClass('white');
+        $('.result_box').addClass('win');
+        $('#nd_agon').show();
+        $('.window_image_2').addClass('nd2');
+        $("#text").text("ヒル魔選手ここで意表を突くロングパスだー！泥門デビルバッツ6ヤードゲイン");
+        $('#sena_window[src="image/saisho_sena.png"]').attr('src', 'image/pass_sena.png');
+        $('#agon_window[src="image/saisho_agon.png"]').attr('src', 'image/run_agon.png');
+        if (sena_gain >= 720) {
+          sena_gain = 900;
+        } else {
+          sena_gain = sena_gain + 360;
+        }
+        $("#icon_sena").animate({ "left": sena_gain });
+      } else if (randomNumber == 1) {
+        $("#result").text("ROSE");
+        $('.result_text').addClass('white');
+        $('.result_box').addClass('rose');
+        $('#nd_sena').show();
+        $('.window_image_1').addClass('nd1');
+        $("#text").text("阿含選手の手刀炸裂！泥門デビルバッツ3ヤード後退");
+        $('#sena_window[src="image/saisho_sena.png"]').attr('src', 'image/pass_sena.png');
+        $('#agon_window[src="image/saisho_agon.png"]').attr('src', 'image/tackle_agon.png');
+        if (sena_gain == 0) {
+          sena_gain = 0;
+        } else {
+          sena_gain = sena_gain - 180;
+        }
+        $("#icon_sena").animate({ "left": sena_gain });
+      } else if (randomNumber == 2) {
+        $("#result").text("DRAW");
+        $('.result_box').addClass('draw');
+        $("#text").text("おっと両者一歩も引かない！");
+        $('#sena_window[src="image/saisho_sena.png"]').attr('src', 'image/pass_sena.png');
+        $('#agon_window[src="image/saisho_agon.png"]').attr('src', 'image/pass_agon.png');
+      } else {
+        ;
+      }
+      console.log(sena_gain);
+      console.log(agon_gain);
+      if (sena_gain >= 900 || agon_gain >= 900) {
+        setTimeout(function () {
+          $('#modalArea').fadeIn();
+          $('#nd_sena').hide();
+          $('#nd_agon').hide();
+        }, 1000);
+      };
+      if (agon_gain >= 900) {
+        setTimeout(function () {
+          $('#modalArea2').fadeIn();
+          $('#nd_sena').hide();
+          $('#nd_agon').hide();
+        }, 1000);
+      };
+      // setTimeout(function () {
+      //   $('#sena_window').attr('src', 'image/saisho_sena.png');
+      //   $('#agon_window').attr('src', 'image/saisho_agon.png');
+      //   $("#result").text("RESULT");
+      //   $('#play_li').show();
+      //   $('#support_li').show();
+      //   $('#next_li').hide();
+      // }, 7000);
+    });
+
+    $(function () {
+      $('#next_li').click(function () {
+        $('#sena_window').attr('src', 'image/saisho_sena.png');
+        $('#agon_window').attr('src', 'image/saisho_agon.png');
+        $("#result").text("RESULT");
+        $('#play_li').show();
+        $('#support_li').show();
+        $('#next_li').hide();
+        $('.result_box').removeClass('win');
+        $('.result_box').removeClass('draw');
+        $('.result_box').removeClass('rose');
+        $('.result_text').removeClass('white');
+        $('.window_image_1').removeClass('nd1');
+        $('.window_image_2').removeClass('nd2');
+        $('#nd_sena').hide();
+        $('#nd_agon').hide();
+      });
+    });
+
+
+    $(function () {
+      $('#closeModal , #modalBg').click(function () {
+        $('#modalArea').fadeOut();
+        location.reload();
+
+      });
+      $('#closeModal2 , #modalBg2').click(function () {
+        $('#modalArea2').fadeOut();
+        location.reload();
+      });
+    });
+
+
+
+
+    // $("#run").on("click", function () {
+    //   const randomNumber = Math.floor(Math.random() * 3);
+    //   if (randomNumber == 0) {
+    //     $("#com_hand").text("相手はグー");
+    //     $("#result").text("DRAW");
+    //     match_count = match_count + 1
+    //     $("#match_count").text("試合数：" + match_count + "戦");
+    //     average = (win_count / match_count) * 100
+    //     $("#average").text("勝率：" + Math.floor(average) + "%");
+    //   } else if (randomNumber == 1) {
+    //     $("#com_hand").text("相手はチョキ");
+    //     $("#result").text("結果：あなたの勝ち");
+    //     win_count = win_count + 1
+    //     $("#win_count").text("勝利数：" + win_count + "勝");
+    //     match_count = match_count + 1
+    //     $("#match_count").text("試合数：" + match_count + "戦");
+    //     average = (win_count / match_count) * 100
+    //     $("#average").text("勝率：" + Math.floor(average) + "%");
+    //   } else if (randomNumber == 2) {
+    //     $("#com_hand").text("相手はパー");
+    //     $("#result").text("結果：あなたの負け");
+    //     match_count = match_count + 1
+    //     $("#match_count").text("試合数：" + match_count + "戦");
+    //     average = (win_count / match_count) * 100
+    //     $("#average").text("勝率：" + Math.floor(average) + "%");
+    //   } else {
+    //     ;
+    //   }
+
+    // });
+
+  </script>
+
+
+</body>
+</html>

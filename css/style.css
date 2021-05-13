@@ -1,0 +1,355 @@
+/* ラッパー */
+
+body {
+  background-image: url(../image/haikei3.jpg);
+  background-size: cover;
+}
+
+.wrapper {
+width: 960px;
+margin: auto;
+margin-top: 50px;
+margin-bottom: 50px;
+padding: 10px;
+padding-top: 0px;
+border: solid 5px black;
+background-color:rgba(255, 255, 255, .85);
+}
+
+
+/* でこ */
+
+
+
+/* ヘッダー */
+header {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+
+.title {
+  text-align: center;
+  font-size: 72px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.title img {
+  width: 40%;
+}
+
+.sub_title {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 10px;
+}
+
+/* ネーム */
+
+.name {
+  display: flex;
+  justify-content: center;
+}
+
+.you {
+  text-align: center;
+  width: 130px;
+  font-weight: bold;
+  margin-right: 130px;
+}
+
+.rival {
+  text-align: center;
+  width: 100px;
+  font-weight: bold;
+  padding-left: 0px;
+  position: relative;
+  left: -20px;
+}
+
+/* ND */
+#nd_sena {
+  width: 132px;
+  height: 116px;
+  background-color: rgba(0, 0, 0, .7);
+  position: relative;
+  z-index: 100;
+}
+
+#nd_agon {
+  width: 132px;
+  height: 116px;
+  background-color: rgba(0, 0, 0, .7);
+  position: relative;
+  z-index: 100;
+
+  }
+
+/* ウィンドウ */
+
+.window {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -20px;
+}
+
+.window_text {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 30px;
+}
+
+.window_1 {
+    width: 132px ;
+    height: 116px;
+    margin: 2em 0;
+    font-weight: bold;
+    border: solid 3px #000000;
+    overflow: hidden;
+}
+
+.window_image_1 {
+  width: 100%;
+}
+
+.window_image_1.nd1 {
+  margin-top:-132px;
+}
+
+
+.window_image_2 {
+  width: 100%;
+}
+
+.window_image_2.nd2 {
+  margin-top:-132px;
+}
+
+.window_2 {
+    width: 132px ;
+    height: 116px;
+    margin: 2em 0;
+    font-weight: bold;
+    border: solid 3px #000000;
+    overflow: hidden;
+}
+
+/* 結果 */
+
+.result_area {
+  display: flex;
+  justify-content: center;
+  margin-top: -40px;
+}
+
+.result_box {
+  width: 170px;
+  height: 20px;
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  font-weight: bold;
+  border: solid 3px #000000;
+  text-align: center;
+}
+
+.result_box.win {
+  background-color: red;
+}
+
+.result_box.draw {
+  background-color: yellow;
+}
+
+.result_box.rose {
+  background-color: blue;
+}
+
+
+
+.result_text {
+  position: relative;
+  top: 2.5px;
+}
+
+.result_text.white {
+  color: #fff;
+}
+
+
+/* メイン */
+
+.circle_line_1 {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 50px;
+}
+
+.circle_line_2 {
+  display: flex;
+  justify-content: space-around;
+}
+.circle{
+  margin-top: 30px;
+  width: 50px;
+  height: 20px;
+  text-align:center;
+  line-height: 30px;
+  border-radius: 50%;
+  background-color: limegreen;
+  border: solid 3px black;
+}
+
+.circle.goal {
+  background-color: gold;
+  border: solid 3px black;
+}
+
+/* 勇者 */
+
+.yuusha_1 {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  left: 2px;
+}
+
+.yuusha_2 {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  left:2px;
+}
+
+/* テキスト */
+.text_wrapper {
+  display: flex;
+}
+
+.text_box_1 {
+    width: 760px;
+    height: 120px;
+    padding: 0.5em 1em;
+    margin-top: 1em;
+    margin-bottom: .5em;
+    font-weight: bold;
+    border: solid 3px #000000;
+    margin-right: 50px;
+    margin-left: 5px;
+}
+.text_box_1 p {
+    margin: 0;
+    padding: 0;
+}
+
+#text {
+  font-size: 18px;
+  padding-top: 10px;
+}
+
+.text_box_2 {
+    width: 150px;
+    height: 120px;
+    padding: 0.5em 1em;
+    margin-top: 1em;
+    margin-bottom: .5em;
+    font-weight: bold;
+    border: solid 3px #000000;
+    margin-right: 5px;
+}
+
+.text_box_2 li {
+  margin-bottom: 10px;
+}
+
+.btn-flat-border {
+  display: inline-block;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: black;
+  border: solid 2px black;
+  border-radius: 3px;
+  transition: .4s;
+}
+
+.btn-flat-border:hover {
+  background: black;
+  color: white;
+}
+
+
+
+
+
+/* モーダル */
+.modalArea {
+  display: none;
+  position: fixed;
+  z-index: 10; /*サイトによってここの数値は調整 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modalBg {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(30,30,30,0.9);
+}
+
+.modalWrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%,-50%);
+  width: 70%;
+  max-width:630px;
+  padding: 10px 30px;
+  background-color: #fff;
+}
+
+.closeModal {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  cursor: pointer;
+}
+
+
+/* モーダル2 */
+.modalArea {
+  display: none;
+  position: fixed;
+  z-index: 10; /*サイトによってここの数値は調整 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modalBg {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(30,30,30,0.9);
+}
+
+.modalWrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%,-50%);
+  width: 70%;
+  max-width: 630px;
+  padding: 10px 30px;
+  background-color: #fff;
+}
+
+.closeModal {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  cursor: pointer;
+}
