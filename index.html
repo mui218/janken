@@ -78,12 +78,15 @@
           </div>
           <div class="text_box_2">
             <ul>
-              <li id="play_li" class="btn-flat-border">セット</li>
-              <!-- <li id="support_li"><a href="support" class="btn-flat-border">チームメイト</a></li> -->
+              <li id="play_li" class="btn-flat-border">プレー</li>
+              <li id="support_li" class="btn-flat-border">スキル</li>
               <li id="run_li" class="btn-flat-border" style="display: none;">ラン</li>
               <li id="tackle_li" class="btn-flat-border" style="display: none;">タックル</li>
               <li id="pass_li" class="btn-flat-border" style="display: none;">パス</li>
-              <li id="next_li" class="btn-flat-border" style="display: none;">次のセットへ</li>
+              <li id="next_li" class="btn-flat-border" style="display: none;">次へ</li>
+              <li id="sena_li" class="btn-flat-border" style="display: none;">デビルバットゴースト</li>
+              <li id="monta_li" class="btn-flat-border" style="display: none;">デビルバックファイア</li>
+              <li id="back_li" class="btn-flat-border" style="display: none;">戻る</li>
             </ul>
           </div>
         </div>
@@ -95,9 +98,10 @@
       <div id="modalBg" class="modalBg"></div>
       <div class="modalWrapper">
         <div class="modalContents">
+          <h1 style="font-size: 36px; padding:20px 0px; color: red;">WIM</h1>
           <img src="image/win_sena.png" alt="">
-          <h1>タッチダウン!!</h1>
-          <h1>泥門デビルバッツの勝ちです。</h1>
+          <h1 style="padding:10px 0px;">タッチダウン!!</h1>
+          <h1 style="padding:10px 0px;">泥門デビルバッツの勝ちです。</h1>
           <p></p>
         </div>
         <div id="closeModal" class="closeModal">
@@ -112,12 +116,51 @@
       <div id="modalBg2" class="modalBg"></div>
       <div class="modalWrapper">
         <div class="modalContents">
+          <h1 style="font-size: 36px; padding:20px 0px; color: blue;">ROSE</h1>
           <img src="image/win_agon.png" alt="">
-          <h1>タッチダウンされました</h1>
-          <h1>神龍寺ナーガの勝ちです。</h1>
+          <h1 style="padding:10px 0px;">タッチダウンされました。</h1>
+          <h1 style="padding:10px 0px;">神龍寺ナーガの勝ちです。</h1>
           <p></p>
         </div>
         <div id="closeModal2" class="closeModal">
+          ×
+        </div>
+      </div>
+    </section>
+    <!-- モーダルエリアここまで -->
+
+    <!-- モーダルエリアここから -->
+    <section id="modalArea3" class="modalArea devil">
+      <div id="modalBg3" class="modalBg"></div>
+      <div class="modalWrapper3">
+        <div class="modalContents">
+          <h1 style="font-size: 24px; padding:20px 0px;">「デビルバットゴースト」</h1>
+          <img src="image/skill_1.png" 　alt="">
+          <h1 style="padding: 20px 0;">スキル「デビルバットゴースト」を手に入れた</h1>
+          <h1 style="padding-bottom: 20px; font-size: 24px;">効果</h1>
+          <h1 style="text-align: left; padding-bottom:10px;">・次のプレーは「ラン」しか選択できなくなる。</h1>
+          <h1 style="text-align: left; padding-bottom:10px;">・ランに成功した場合2倍ゲインできる。</h1>
+        </div>
+        <div id="closeModal3" class="closeModal">
+          ×
+        </div>
+      </div>
+    </section>
+    <!-- モーダルエリアここまで -->
+
+    <!-- モーダルエリアここから -->
+    <section id="modalArea4" class="modalArea devil">
+      <div id="modalBg4" class="modalBg"></div>
+      <div class="modalWrapper3">
+        <div class="modalContents">
+          <h1 style="font-size: 24px; padding:20px 0px;">「デビルバックファイア」</h1>
+          <img src="image/skill_2.png" 　alt="">
+          <h1 style="padding: 20px 0;">スキル「デビルバックファイア」を手に入れた</h1>
+          <h1 style="padding-bottom: 20px; font-size: 24px;">効果</h1>
+          <h1 style="text-align: left; padding-bottom:10px;">・次のプレーは「パス」しか選択できなくなる。</h1>
+          <h1 style="text-align: left; padding-bottom:10px;">・パスが必ず通る。</h1>
+        </div>
+        <div id="closeModal4" class="closeModal">
           ×
         </div>
       </div>
@@ -133,6 +176,9 @@
 
     let sena_gain = 0;
     let agon_gain = 0;
+    let skill_have = 0;
+    let skill_number = 0;
+    let skill_use = 0;
 
 
     $("#play_li").on("click", function () {
@@ -141,7 +187,64 @@
       $('#run_li').show();
       $('#tackle_li').show();
       $('#pass_li').show();
+      if (skill_use == 3) {
+        $('#tackle_li').hide();
+        $('#pass_li').hide();
+      }
+      if (skill_use == 4) {
+        $('#tackle_li').hide();
+        $('#run_li').hide();
+      }
     });
+
+    $("#support_li").on("click", function () {
+      if (skill_have == 0 || skill_have == 1 || skill_have == 2) {
+        $('#back_li').show();
+        $('#play_li').hide();
+      }
+      if (skill_have == 3) {
+        $('#sena_li').show();
+        $('#back_li').show();
+        $('#play_li').hide();
+      }
+      if (skill_have == 4) {
+        $('#monta_li').show();
+        $('#back_li').show();
+        $('#play_li').hide();
+      }
+    });
+
+    $("#back_li").on("click", function () {
+      $('#play_li').show();
+      $('#back_li').hide();
+      $('#sena_li').hide();
+      $('#monta_li').hide();
+    });
+
+    $("#sena_li").on("click", function () {
+      $("#text").text('スキル「デビルバットゴースト」を使用。次のプレーでランが成功した場合ゲインヤードが2倍に。');
+      skill_have = 0;
+      skill_use = 3;
+      $('#sena_li').hide();
+      $('#play_li').show();
+      $('#back_li').hide();
+      $('#support_li').hide();
+      console.log(skill_use);
+    });
+
+    $("#monta_li").on("click", function () {
+      $("#text").text('スキル「デビルバックファイア」を使用。次のプレーでパスは必ず通る。');
+      skill_have = 0;
+      skill_use = 4;
+      $('#monta_li').hide();
+      $('#play_li').show();
+      $('#back_li').hide();
+      $('#support_li').hide();
+      console.log(skill_use);
+    });
+
+
+
 
     $("#run_li").on("click", function () {
       const randomNumber = Math.floor(Math.random() * 3);
@@ -161,9 +264,17 @@
         $('.result_box').addClass('win');
         $('#nd_agon').show();
         $('.window_image_2').addClass('nd2');
-        $("#text").text('小早川セナ先週光速のランニングだ！泥門デビルバッツ3ヤードゲイン');
+        $("#text").text('セナ選手光速のランニングだ！泥門デビルバッツ3ヤードゲイン');
         $('#sena_window[src="image/saisho_sena.png"]').attr('src', 'image/run.png');
         sena_gain = sena_gain + 180;
+        if (skill_use == 3) {
+          $('#sena_window').attr('src', 'image/skill_1.png');
+          sena_gain = sena_gain + 180;
+          if (sena_gain > 960) {
+            sena_gain = sena_gain - 180;
+          }
+          $("#text").text('セナ選手デビルバットゴースト炸裂！！泥門デビルバッツ6ヤードゲイン');
+        };
         $("#icon_sena").animate({ "left": sena_gain });
         $('#agon_window[src="image/saisho_agon.png"]').attr('src', 'image/tackle_agon.png');
       } else if (randomNumber == 2) {
@@ -184,8 +295,21 @@
       } else {
         ;
       }
-      console.log(sena_gain);
-      console.log(agon_gain);
+
+      if (skill_use == 3) {
+        skill_use = 0;
+        console.log(skill_use);
+      }
+      if (skill_have < 3) {
+        skill_number = Math.floor(Math.random() * 5);
+        skill_have = skill_number;
+        console.log(skill_have);
+        if (agon_gain < 900 && sena_gain < 900 && skill_have == 3) {
+          $('#modalArea3').fadeIn();
+        } else if (agon_gain < 900 && sena_gain < 900 && skill_have == 4) {
+          $('#modalArea4').fadeIn();
+        }
+      }
       if (sena_gain >= 900) {
         setTimeout(function () {
           $('#modalArea').fadeIn();
@@ -200,6 +324,9 @@
           $('#nd_agon').hide();
         }, 1000);
       };
+
+
+
       // setTimeout(function () {
       //   $('#sena_window').attr('src', 'image/saisho_sena.png');
       //   $('#agon_window').attr('src', 'image/saisho_agon.png');
@@ -211,12 +338,8 @@
     });
 
 
-
-
-
     $("#tackle_li").on("click", function () {
       const randomNumber = Math.floor(Math.random() * 3);
-      console.log(sena_gain);
       $('#run_li').hide();
       $('#tackle_li').hide();
       $('#pass_li').hide();
@@ -256,8 +379,18 @@
       } else {
         ;
       }
-      console.log(sena_gain);
-      console.log(agon_gain);
+
+      if (skill_have < 3) {
+        skill_number = Math.floor(Math.random() * 5);
+        skill_have = skill_number;
+        console.log(skill_have);
+        if (agon_gain < 900 && sena_gain < 900 && skill_have == 3) {
+          $('#modalArea3').fadeIn();
+        } else if (agon_gain < 900 && sena_gain < 900 && skill_have == 4) {
+          $('#modalArea4').fadeIn();
+        }
+      }
+
       if (sena_gain >= 900 || agon_gain >= 900) {
         setTimeout(function () {
           $('#modalArea').fadeIn();
@@ -283,12 +416,14 @@
     });
 
     $("#pass_li").on("click", function () {
-      const randomNumber = Math.floor(Math.random() * 3);
-      console.log(sena_gain);
+      let randomNumber = Math.floor(Math.random() * 3);
       $('#run_li').hide();
       $('#tackle_li').hide();
       $('#pass_li').hide();
       $('#next_li').show();
+      if (skill_use == 4) {
+        randomNumber = 0;
+      };
       if (randomNumber == 0) {
         $("#result").text("WIN");
         $('.result_text').addClass('white');
@@ -298,6 +433,10 @@
         $("#text").text("ヒル魔選手ここで意表を突くロングパスだー！泥門デビルバッツ6ヤードゲイン");
         $('#sena_window[src="image/saisho_sena.png"]').attr('src', 'image/pass_sena.png');
         $('#agon_window[src="image/saisho_agon.png"]').attr('src', 'image/run_agon.png');
+        if (skill_use == 4) {
+          $('#sena_window').attr('src', 'image/skill_2.png');
+          $("#text").text("これはすごい！大技デビルバックファイアが決まった！！泥門デビルバッツ6ヤードゲイン");
+        }
         if (sena_gain >= 720) {
           sena_gain = 900;
         } else {
@@ -328,8 +467,21 @@
       } else {
         ;
       }
-      console.log(sena_gain);
-      console.log(agon_gain);
+      if (skill_use == 4) {
+        skill_use = 0;
+        console.log(skill_use);
+      }
+      if (skill_have < 3) {
+        skill_number = Math.floor(Math.random() * 5);
+        skill_have = skill_number;
+        console.log(skill_have);
+        if (agon_gain < 900 && sena_gain < 900 && skill_have == 3) {
+          $('#modalArea3').fadeIn();
+        } else if (agon_gain < 900 && sena_gain < 900 && skill_have == 4) {
+          $('#modalArea4').fadeIn();
+        }
+      }
+
       if (sena_gain >= 900 || agon_gain >= 900) {
         setTimeout(function () {
           $('#modalArea').fadeIn();
@@ -378,11 +530,16 @@
       $('#closeModal , #modalBg').click(function () {
         $('#modalArea').fadeOut();
         location.reload();
-
       });
       $('#closeModal2 , #modalBg2').click(function () {
         $('#modalArea2').fadeOut();
         location.reload();
+      });
+      $('#closeModal3 , #modalBg3').click(function () {
+        $('#modalArea3').fadeOut();
+      });
+      $('#closeModal4 , #modalBg4').click(function () {
+        $('#modalArea4').fadeOut();
       });
     });
 
